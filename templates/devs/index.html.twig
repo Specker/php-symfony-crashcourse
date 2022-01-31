@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Devs!{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Age</td>
+                <td>Email</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dev in devs %}
+            <tr>
+                <td><a href="{{ path('devs.getDev', {id: dev.id }) }}">{{ dev.id }}</a></td>
+                <td>{{ dev.name }}</td>
+                <td>{{ dev.age }}</td>
+                <td>{{ dev.email }}</td>
+                <td><a href="{{ path('devs.deleteDev', {id: dev.id }) }}" class="text-danger">Del</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
